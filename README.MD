@@ -65,6 +65,11 @@ Vous trouverez ci-dessous un exemple du rapport HTML généré après l'exécuti
     source venv/bin/activate
     ```
 
+3.  Installez les dépendances listées dans `requirements.txt` :
+    ```bash
+    pip install -r requirements.txt
+    ```
+
 ## Exécution des Tests
 
 Pour exécuter les tests, naviguez à la racine du projet dans votre terminal et lancez la commande Pytest :
