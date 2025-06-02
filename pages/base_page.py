@@ -1,4 +1,3 @@
-# pages/base_page.py
 import time
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,12 +8,12 @@ class BasePage:
     def __init__(self, driver: WebDriver, base_url="https://weathershopper.pythonanywhere.com/"):
         self.driver = driver
         self.base_url = base_url
-        self.wait = WebDriverWait(driver, 10) # Attente explicite de 10 secondes par défaut
+        self.wait = WebDriverWait(driver, 10) 
 
     def _visit(self, url_path=""):
         """Navigue vers une URL (base_url + url_path)"""
         full_url = self.base_url + url_path
-        print(f"Visiting: {full_url}") # Pour le débogage
+        print(f"Visiting: {full_url}")
         self.driver.get(full_url)
 
     def _find(self, locator):
@@ -24,7 +23,7 @@ class BasePage:
             return self.wait.until(EC.visibility_of_element_located(locator))
         except TimeoutException:
             print(f"Timeout: Element not visible or not found: {locator}")
-            raise # Relance l'exception pour que le test échoue clairement
+            raise # la on Relance l'exception pour que le test échoue clairement
 
     def _click(self, locator):
         """Clique sur un élément"""
@@ -44,7 +43,6 @@ class BasePage:
     def _get_text(self, locator):
         """Récupère le texte d'un élément"""
         text = self._find(locator).text
-        # print(f"Getting text from {locator}: '{text}'") # Pour le débogage
         return text
 
     def _is_displayed(self, locator):
@@ -52,7 +50,7 @@ class BasePage:
         try:
             return self._find(locator).is_displayed()
         except TimeoutException:
-            return False # Si non trouvé dans le délai, il n'est pas affiché
+            return False
 
     def _wait_for_text_in_element(self, locator, text_to_find, timeout=10):
         """Attend que le texte spécifié apparaisse dans un élément."""
